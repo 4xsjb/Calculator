@@ -20,6 +20,7 @@ function display(num) {
   }
   else if (screen.value.length >= 11) {
     message.style.display = "inline";
+    screen.value += num ;
   }
   else {
     screen.value += num ;
@@ -27,6 +28,8 @@ function display(num) {
 }
 clearbtn.addEventListener('click' , function(){
   screen.value = '';
+  message.style.display = "none";
+  
 })
 plusbtn.addEventListener('click', function() {
   if(screen.value =="Error" || screen.value == "too much !"){
@@ -48,8 +51,14 @@ deletebtn.addEventListener('click', function(){
   if(screen.value == "Error" || screen.value == "too much !"){
     screen.value = "";
   }
+  else if (screen.value.length < 13) {
+    screen.value = screen.value.slice(0, -1);
+    message.style.display = "none";
+    screen.value += num ;
+  } 
+  else {
   screen.value = screen.value.slice(0, -1);
-})
+}})
 equalbtn.addEventListener('click', function(){
   try {
     message.style.display = "none";
@@ -60,11 +69,11 @@ equalbtn.addEventListener('click', function(){
     else if(screen.value == "undefined"){
       screen.value = "";
     }
-    else if(screen.value > 10000000000000) {
-      screen.value = "too much !"
-    }
     }
   catch(error) {
     screen.value = "Error";
   }
 })
+
+
+
